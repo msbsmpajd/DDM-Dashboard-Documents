@@ -1,0 +1,34 @@
+library(shiny)
+Immigrant <- read.csv("errors.csv")
+
+
+# Define the overall UI
+shinyUI(
+  
+  # Use a fluid Bootstrap layout
+  fluidPage(    
+    
+    # Give the page a title
+    titlePanel("Errors Per Center"),
+    
+    # Generate a row with a sidebar
+    sidebarLayout(      
+      
+      # Define the sidebar with one input
+      sidebarPanel(
+        selectInput("center", "Center:", 
+                    choices= c("Concourse", "Coney Island", "Crotona",
+                               "East New York", "Fort Greene", "Jamaica",
+                               "Queens", "Refugee", "Richmond", "Rockaway",
+                               "St. Nicholas", "Washington Heights", "Waverly",
+                               "Williamsburg"))
+      ),
+      
+      # Create a spot for the barplot
+      mainPanel(
+        plotOutput("ErrorPlot")  
+      )
+      
+    )
+  )
+)
